@@ -1,6 +1,7 @@
 <div class="container">
     
-    <h1>{{ vUrl  }} changes</h1>
+    {{#if vName  }}<div class="custInfo">{{vName}} audits of {{vUrl}}</div> {{/if}}
+    
     <div>Sort by date</div>
     <form action="audits?cu={{cu}}" class="query-form">
         <input type="date" name="date" placeholder="Select a date">

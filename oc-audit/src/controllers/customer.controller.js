@@ -155,9 +155,9 @@ module.exports = {
                     req.session.vUrl = customer.url;
                     req.session.vEmail = customer.email;
                     req.session.vLastOn = customer.updatedAt;
-                    
+                   
+                    console.log(`vName: ${req.session.vName}`)
 
-                    console.log(req.session)
                     res.redirect('/audits');
 
                 } else {

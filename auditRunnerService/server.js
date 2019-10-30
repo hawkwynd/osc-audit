@@ -54,7 +54,7 @@ const run = async (customers) => {
 						const loadedData = await axios.get(`${currentSitemap.loc}?format=json`)
 							.then(res => res.data)
 							.catch( function(error){
-								console.log(`${currentSitemap.loc} is 404! ` + error);
+								console.log(`${currentSitemap.loc} ` + error);
 							});
 
 						if(loadedData) {
@@ -79,7 +79,7 @@ const run = async (customers) => {
 							}		
 						}
 					}
-					process.stdout.write(`\r\t${customer.url} scan completed.                                                                 `)
+					process.stdout.write(`\n\t${customer.url} scan completed.                                                                 `)
 				}
 	}
 
