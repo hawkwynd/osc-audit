@@ -1,0 +1,31 @@
+<div class="container formContainer">
+    <h1 class="h3 mb-3 font-weight-normal">Admin registration</h1>
+    {{# if errors }}
+        {{# each errors }}
+            <p class=" red-text">{{ this.msg }}</p>        
+        {{/each}}
+    {{/if}}
+  <form class="form-signin" method="post" action="register" >
+      <div class="input-field col s6">
+        <label for="name" class="sr-only">Name</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Name"  autofocus>
+      </div>
+
+      <div class="input-field col s6">
+        <label for="email" class="sr-only">email</label>
+        <input type="text" name="email" id="email" class="form-control" placeholder="email"  autofocus>
+      </div>
+
+      <div class="input-field col s6">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" >
+      </div>
+      <div class="input-field col s6">
+        <label for="password-confirm" class="sr-only">Password confirm</label>
+        <input type="password" name="password-confirm" id="password-confirm" class="form-control" placeholder="Password Confirm" >
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block oc-btn">Register</button>
+      <a href="/" alt="go back " class="btn btn-primary oc-btn back">Back</a>      
+    </form>
+</div>

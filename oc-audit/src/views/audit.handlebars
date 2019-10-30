@@ -1,0 +1,82 @@
+<div class="container">
+    {{#if audit}}
+    {{!-- place main.css afer site.css for cascading/precedence reasons.  --}}
+    <link href="https://{{audit.rootUrl}}/site.css" rel="stylesheet"> 
+    <link href="/css/main.css" type="text/css" rel="stylesheet" media="screen,projection"> 
+    <h2 class="center name">
+      {{audit.cuName}}
+      (<a href="{{audit.url}}" target="_blank"> Go to Site</a> | <a href="/audits/dev/{{audit.id}}">View Code</a>)
+      <a class="waves-effect waves-light modal-trigger" href="#accessibilityModal"><i class="fas fa-universal-access"></i></a>
+    </h2>
+        <!-- Modal Structure -->
+        <div id="accessibilityModal" class="modal bottom-sheet">
+          <div class="modal-content">
+            <h4>Accessibility Portal</h4>
+            <form method="post" action="/audits/edit" >
+              <div class="container">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="id" id="id" aria-describedby="ID"  value="{{audit.id}}">
+                </div>
+                <div class="form-group">
+                    <label>
+                      <input type="checkbox" name="isCompliant" {{#if audit.isCompliant}} checked {{/if}} />
+                      <span>Is Accessibility</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea" rows="10" cols="30" name="comment" >{{audit.comment}}</textarea>
+                      </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary oc-btn">Submit</button>
+                <a href="#!" alt="Close" class="modal-close btn btn-primary oc-btn back">Close</a>
+                </div>
+            </form>
+          </div>
+        </div>
+    <br>
+    <div class="row">
+    <div class="col s12" style="flex:1; flex-basis:initial;">
+      <ul id="tab-nav" class="tabs">
+        <li class="tab col s4"><a class="active" href="#diff">Change Highlight</a></li>
+        <li class="tab col s4"><a href="#old">Preview Version</a></li>
+        <li class="tab col s4 "><a href="#new">New Version</a></li>
+      </ul>
+    </div>
+    <div id="diff" class="tab_content col s12">
+        <center>
+            {{{audit.diffData}}}
+        </center>
+    </div>
+    <div id="old" class="tab_content col s12">
+        <center>
+            <h2> Images</h2>
+            <div class="assetsImages">
+              {{# each audit.oldAssets }}
+                {{#if this}}
+                    <img src="{{this}}" alt="image" style="height:150px; "/>
+                {{/if}}
+                {{/each}}
+            </div>
+            {{{audit.oldData}}}
+        </center>
+    </div>
+    <div id="new" class="tab_content col s12">
+        <center>
+            <h2> Images</h2>
+            <div class="assetsImages">
+              {{# each audit.newAssets }}
+                {{#if this}}
+                    <img src="{{this}}" alt="image" style="height:150px; "/>
+                {{/if}}
+                {{/each}}
+            </div>
+            {{{audit.newData}}}
+        </center>
+    </div>
+  </div>
+    {{/if}}
+
+</div>

@@ -1,0 +1,37 @@
+<div class="container formContainer">
+    <div class="card ">
+        <div class="card-header bg-primary">
+            <h1 class="h3 mb-3 font-weight-normal">Edit Customer</h1>
+        </div>
+        <div class="card-body">
+            {{# if errors }}
+                {{# each errors }}
+                    <p class="red-text">{{ this.msg }}</p>
+                    
+                {{/each}}
+            {{/if}}
+            <form method="post" action="/customer/edit" >
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="id" id="id" aria-describedby="ID"  value="{{customer.id}}">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="code" id="code" aria-describedby="Code" placeholder="ie: www.example.com" value="{{customer.code}}">
+                </div>
+                <div class="form-group">
+                    <label for="name">Credit Union Name</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Enter CU name" value="{{customer.name}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Contact Email</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="ie: contact@example.com, contact2@example.com,... " value="{{customer.email}}">
+                </div>
+                <div class="form-group">
+                    <label for="url">Credit Union Url</label>
+                    <input type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp" placeholder="ie: www.example.com" value="{{customer.url}}" >
+                </div>
+                <button type="submit" class="btn btn-primary oc-btn">Submit</button>
+                <a href="/" alt="go back " class="btn btn-primary oc-btn back">Back</a>
+            </form>
+        </div>
+    </div>
+</div>

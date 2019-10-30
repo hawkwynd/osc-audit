@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+            <table class="stripped">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>email</td>
+                        <td>Changes</td>
+                        {{!-- <td>Access Code</td> --}}
+                        <td>View</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{# each customers }}
+                    <tr>
+                        <td>{{this.name}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.audits.length}}</td>
+                        {{!-- <td>{{this.code}}</td> --}}
+                        <td><a href="/audits?cu={{this._id}}"> <i class="material-icons">remove_red_eye</i></a></td>
+                        <td><a href="/customer/edit/{{this._id}}"><i class="material-icons darken-4">edit</td>
+                        <td><a href="/customer/delete/{{this._id}}"><i class="material-icons red-text darken-4">delete</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+    </div>
+</div>

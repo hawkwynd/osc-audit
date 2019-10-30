@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- Compiled and minified Styledsheet -->
+<link href="/css/main.css" type="text/css" rel="stylesheet" media="screen,projection" >
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0">
+    <meta name="description" content="Software to scan OMNICOMMANDER client's live websites(On Squarespace) for changes and notify an ADA Compliance professional. All changes are reported.">
+    <link rel="icon" type="image/png" href="/images/star.png" />
+    <title>OC-Audit</title>
+</head>
+<body>
+  <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content lastLogin">
+      
+      <li class="divider"></li>
+      <li>
+        <h6 class="center">last Login:</h6>
+        <a href="#!" class="disabled ">{{user.login_date}}</a>
+      </li>
+    </ul>
+    <nav>
+      <div class="nav-wrapper">
+        <h3><a href="/" class="">OC SCAN</a></h3>
+        <ul class="right ">
+          {{#if user}}
+            <li><a class="dropdown-trigger display_name" href="#!" data-target="dropdown1">{{user.name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a href="/audits">Audits</a></li>
+          <li><a href="/reports">Reports</a></li>
+          {{/if}}
+          {{#if visitor}}
+            {{#unless ../user}}
+              <li><a href="/audits">Audits</a></li>
+            {{/unless}}
+          {{/if}}
+          {{#if user}}
+            <li><a href="/admin/logout">Sign Out</a></li>
+          {{else}}
+            <li><a href="/admin/login">Admin</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+        
+  <section id="main">
+    {{{body}}}
+  </section>
+  {{> footer}}
+    {{#if user}}
+         <a href="/newCustomer" class="add-float"><i class="material-icons">add</i></a>
+    {{/if}}
+
+</body>
+
+  <!--  Scripts-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/init.js"></script>
+  <script src="/js/main.js"></script>
+
+</html>

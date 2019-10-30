@@ -1,0 +1,23 @@
+<div class="container formContainer">
+  <h1 class="h3 mb-3 font-weight-normal">Admin Panel</h1>
+  {{# if errors }}
+      {{# each errors }}
+          <p class="red-text">{{ this.msg }}</p>        
+      {{/each}}
+  {{/if}}
+  <form class="form-signin" method="post" action="login" >
+      
+      <div class="input-field col s6">
+        <label for="email" class="sr-only">email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="email"  autofocus>
+      </div>
+
+      <div class="input-field col s6">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" >
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-block oc-btn">Login</button>
+      <a href="/" alt="go back " class="btn btn-primary oc-btn back">Back</a>      
+    </form>
+</div>

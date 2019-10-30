@@ -1,0 +1,33 @@
+<div class="container formContainer">
+  <div class="split">
+    <div class="left">
+      <h2 class="h3 mb-3 font-weight-normal">OC Scan Portal v1.2</h2>
+      <div class="p-wrapper">
+        <p><i class="fas fa-search-plus"></i> Monitor Website changes</p>
+        <p><i class="fas fa-envelope"></i> Notifications instantly</p>
+        <p><i class="fas fa-history"></i> Access to change history</p>
+      </div>
+    </div>
+    <div class="right">
+      <h2 class="h3 mb-3 font-weight-normal">Customer Login</h2>
+      <h5></h5>
+      {{# if error }}
+              <p class="red-text ">{{ error }}</p>        
+      {{/if}}
+      <form class="form-signin" method="post" action="login" >
+        
+        <div class="input-field col 26">
+          <label for="email" class="sr-only">email</label>
+          <input type="text" name="email" id="email" class="form-control" placeholder="Email address" >
+        </div>
+
+
+          <div class="input-field col s6">
+            <label for="customerId" class="sr-only">Customer Id</label>
+            <input type="text" name="customerId" id="customerId" class="form-control" placeholder="Password"  autofocus required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block oc-btn">Login</button>
+        </form>
+    </div>
+  </div>
+</div>

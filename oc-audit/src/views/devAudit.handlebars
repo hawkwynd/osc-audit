@@ -1,0 +1,9 @@
+<div class="cover">
+        {{!-- Needed for styling code compare --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
+<link href="/css/diff2html.css" rel="stylesheet">
+<h2 class="center name">{{audit.cuName}}(<a href="{{audit.url}}" target="_blank"> Go to Site</a> | <a href="/audits/{{audit.id}}">Visual change</a>)</h2>
+{{#if code}}
+        <div id="code">{{{code}}}</div>
+{{/if}}
+</div>
