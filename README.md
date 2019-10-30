@@ -6,7 +6,7 @@
 ### First time only, install nodemon
 `npm i nodemon`
 
--Then run dev app for local
+Then, just run dev app for localhost enviroment.
 
 `npm run dev`
 
