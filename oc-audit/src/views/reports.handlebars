@@ -1,0 +1,71 @@
+<div class="container">
+    <h3>Select A Credit Union and a date</h3>
+    <form method="get" action="/report" class="query-form" style="display: block;">
+    <div class="input-field col s12">
+            <select name="cu" required>
+                <option value="" selected>Select Customer</option>
+                {{# each cuList }}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="input-field col s12">
+            <input type="date" name="date" placeholder="Select a date" required>
+        </div>
+        <div class="input-field col s12">
+            <button type="submit" class="btn oc-btn">Submit</button>
+        </div>
+    </form>
+        <table class="striped" id="report">
+        <thead>
+            <tr >
+                <td colspan="4">
+                        <h2 class="white-text">
+                        {{cuName}}({{date}})
+                        <a class="printReport white-text"><i class="fas fa-print"></i></a>
+                        </h2>
+                </td>
+            </tr>
+            <tr class="bg-primary text-white">
+                <td>Url</td>
+                <td>Change date</td>
+                <td>is Compliant</td>
+                <td>Comment</td>
+            </tr>
+        </thead>
+        <tbody>
+        {{# each reports }}
+            <tr>
+                <td>{{{relativeUrl this.url}}}</td>
+                <td>{{this.compareDate}}</td>
+                <td>{{#if this.isCompliant}} YES {{else}} NO {{/if}} </td>
+                <td>{{this.comment}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+        </table>
+</div>
+
+<script src="/js/jspdf.min.js"></script>
+<script src="/js/jspdf.plugin.autotable.min.js"></script>
+<script>
+    // Report Print
+    $(document).ready(function(){
+        $(".printReport").on('click', function(e){
+            e.preventDefault();
+        var doc = new jsPDF();
+        // You can use html:
+        doc.autoTable({
+            html: '#report', 
+            styles: { halign: 'center', cellPadding: 5, cellWidth: 50, rowPageBreak: 'auto' }, 
+            Padding: {top: 20, right: 0, bottom: 20, left: 0}, 
+            margin: {top: 0, right: 0, bottom: 0, left: 0},
+            columnStyles: {text: {cellWidth: 'wrap'}},
+            useCss: true
+        });
+        
+        
+        doc.save('AccessibilityReport.pdf');
+        });
+    });
+</script>

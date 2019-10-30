@@ -1,0 +1,40 @@
+<div class="container">
+    
+    <h1>{{ vUrl  }} changes</h1>
+    <div>Sort by date</div>
+    <form action="audits?cu={{cu}}" class="query-form">
+        <input type="date" name="date" placeholder="Select a date">
+        <button type="submit" class="btn oc-btn">Submit</button>
+    </form>
+    <table class="striped">
+        <thead>
+            <tr class="bg-primary text-white">
+                <td>Name</td>
+                <td>URL</td>
+                <td>Change Date</td>
+                <td>Dev Option</td>
+                {{#if user}}
+                    <td>Delete</td>
+                {{/if}}
+            </tr>
+        </thead>
+        <tbody>
+            {{# each audits }}
+                <tr>
+                    <td><a href="/audits/{{this.id}}">{{{this.cuName}}}</td>
+                    <td><a href="{{this.url}}" target="_blank">{{{this.url}}}</td>
+                    <td><a href="/audits/{{this.id}}">{{{formatDate this.modified "MM/DD/YYYY"}}}</td>
+                    <td><a href="/audits/dev/{{this.id}}">View Code</td>
+                    {{#if ../user}}
+                        <td><a href="/audits/delete/{{this.id}}" ><i class="material-icons red-text darken-4">delete</td>
+                    {{/if}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <ul class="pagination"> 
+        {{# each pages }}
+            <li class="waves-effect {{{active ../paginate.page this.number}}} "><a href="{{{this.url}}}">{{this.number}}</a></li>
+        {{/each}}
+    </ul>
+</div>
