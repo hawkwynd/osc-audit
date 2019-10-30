@@ -146,23 +146,32 @@ module.exports = {
             
             if(customerId) {
                 Customer.getCustomerByCode(customerId, email, (customer) => {
+
                 if(customer){
                     
-                    console.log(`Customer login: ${customer.email} ${customer.name} ${customer.url} `);
+                    console.log(`login: ${customer.email} ${customer.name} ${customer.url} `);
+                    
+                    // load up session info for pages to display shit
 
-                    req.session.visitor = customer._id;
-                    req.session.vName = customer.name;
-                    req.session.vUrl = customer.url;
-                    req.session.vEmail = customer.email;
-                    req.session.vLastOn = customer.updatedAt;
+                    req.session.visitor     = customer._id;
+                    req.session.vName       = customer.name;
+                    req.session.vUrl        = customer.url;
+                    req.session.vEmail      = customer.email;
+                    req.session.vLastOn     = customer.updatedAt;
                    
-                    console.log(`vName: ${req.session.vName}`)
-
                     res.redirect('/audits');
 
                 } else {
-                    req.session.error = "Password or email incorrect.";
+                    // Bad login, return error and stuff
+                   
+                    req.session.error = "Please enter a valid email address and password";
                     req.session.visitor = null;
+                
+                    // what is the correct customer password? Redirect to a forgot password handlebar.
+                    Customer.getCustomerCodeByEmail(email, (customer) => {
+                        console.log(`Bad password!\n I got: ${customerId} but it should be: ${customer.code}`);
+                    });
+                    
                     res.redirect('/customer/login');
                 }
                 });
@@ -176,5 +185,26 @@ module.exports = {
         Customer.findByIdAndDelete(id).then(results => {
             res.redirect('/');
         });
-    }
+    },
+
+    forgotpw: (req, res) => {
+
+        const { email } = req.body;
+            req.checkBody('email', 'Email is required').notEmpty();
+            var errors = req.validationErrors();
+        
+        res.render('forgotpw', {error: req.session.error});
+        req.session.error = null;
+    },
+    
+    pwsubmit: (req, res) => {
+        
+        res.render('pwsubmit', {error: req.session.error} );
+        req.session.error = null;
+               
+        // Customer.getCustomerCodeByEmail(pwemail, (customer) => {
+        //     console.log(`${pwemail} but it should be: ${customer.code}`);
+        // });
+
+    },
 };
