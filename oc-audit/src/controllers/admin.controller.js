@@ -57,6 +57,7 @@ module.exports = {
                 req.session.user = null;
                 req.session.success = false;
                 res.redirect('/admin/login');
+
             } else {
                 // No errors
                 const user = Object.assign({}, req.user._doc);
@@ -64,7 +65,6 @@ module.exports = {
                 req.session.user = user;
                 req.session.visitor = null;
                 
-                console.log(`${user.name} logged in` );
                 res.redirect('/');
             }
     },
