@@ -18,7 +18,7 @@ Then, just run dev app for localhost enviroment.
 
 `npm run dev`
 
-(http://localhost:8080)[http://localhost:8080] to access front end with your browser.
+[http://localhost:8080](http://localhost:8080) to access front end with your browser.
 
 ### run auditRunnerservice
 
