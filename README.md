@@ -9,14 +9,17 @@
 `npm run dev`
 
 = Run local host webserver
+
 `cd oc-audit/src`
 `npm run dev`
 
 http://localhost:8080 to access front end 
 
-- run auditRunnerservice
+= run auditRunnerservice
+
 `cd auditRunnerService`
-`npm run start --dev`
+`npm run start --dev` for localhost
+
 
 
 
