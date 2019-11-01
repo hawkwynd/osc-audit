@@ -162,8 +162,8 @@ module.exports = {
                     res.redirect('/audits');
 
                 } else {
+                
                     // Bad login, return error and stuff
-                   
                     req.session.error = "Please enter a valid email address and password";
                     req.session.visitor = null;
                 
@@ -186,25 +186,60 @@ module.exports = {
             res.redirect('/');
         });
     },
-
     forgotpw: (req, res) => {
 
         const { email } = req.body;
-            req.checkBody('email', 'Email is required').notEmpty();
-            var errors = req.validationErrors();
-        
+        req.checkBody('email', 'Email is required').notEmpty();
+        var errors = req.validationErrors();   
         res.render('forgotpw', {error: req.session.error});
         req.session.error = null;
     },
-    
     pwsubmit: (req, res) => {
         
-        res.render('pwsubmit', {error: req.session.error} );
-        req.session.error = null;
+        const{email} = req.body;
+        console.log(`A password submit request was issued for ${email}`);
+
+        try{
+
+            Customer.getCustomerCodeByEmail(email, (customer) => {
+             if(customer){
+                console.log(`Customer Name: ` + customer.name);
+                console.log(`Customer Email: `+ customer.email);
+                console.log(`Customer site url: ` + customer.url);
+                console.log(`${email}'s password is : ${customer.code}`);
+                
+                const html = `
+                <div style="font-size:18px;">
+                <h3 style="text-transform:uppercase; color: #662c90;">${customer.name} Password Request </h3>
+                <p>This email is in response to a request we received for a password for OC SCAN login for ${customer.name}</p>
+                <p>username:  <span style="font-weight:700;">${customer.email}</span></p>
+                <p>Password:  <span style="font-weight:700;">${customer.code}</span></p>
+                <p>Important Tip: Please write your password down and store it in a secure, dry place.</p>
+
+                <div style="margin:40px 0;font-size:22px;">
+                OC-Audit v1.2 by Omnicommander
+                </div>
+                </div>
+                `;
                
-        // Customer.getCustomerCodeByEmail(pwemail, (customer) => {
-        //     console.log(`${pwemail} but it should be: ${customer.code}`);
-        // });
+                // Send the email
+                mailer(email, `OC Scan Password Request for ${customer.name}`, html);
+                res.render('pwsubmit', {email: customer.email} );
+                req.session.error = null;
+
+             }else{
+                
+                // bad email address in customer listing redirect with error
+                req.session.error = `${email} is not a valid email address.`;
+                res.redirect('/customer/forgotpw');
+                req.session.error = null;
+             }
+            });
+        }
+    catch(error){
+        console.error(error);
+    }
+
 
     },
 };

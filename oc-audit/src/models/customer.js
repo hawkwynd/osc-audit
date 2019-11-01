@@ -39,6 +39,7 @@ CustomerSchema.statics.getCustomerByCode = function(code, email, callback) {
   this.model('Customer').findOne({code: code, email: email}).then(callback)
 };
 
+// Used by forgotpw for obtaining password for email.
 CustomerSchema.statics.getCustomerCodeByEmail = function(email, callback) {
   this.model('Customer').findOne({email: email}).then(callback)
 };

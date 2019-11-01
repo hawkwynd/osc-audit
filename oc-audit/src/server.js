@@ -105,7 +105,7 @@ app.post('/customer/edit', customerController.editCustomerById);
 
 // forgot password
 app.get('/customer/forgotpw', customerController.forgotpw); // form
-app.get('/customer/pwsubmit', customerController.pwsubmit); // function 
+app.post('/customer/pwsubmit', customerController.pwsubmit); // function 
 
 // Audits routes
 app.get('/audits', auditController.getAudits);

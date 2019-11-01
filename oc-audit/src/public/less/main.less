@@ -1,3 +1,6 @@
+
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+
 // OMNICOMMANDER purple variable.
 :root {
   --purp: #571389;
@@ -48,6 +51,46 @@ section#main {
   padding: 0 2em;
   padding-bottom: 50px;
   text-align: center;
+
+  .loginMsg{
+    color: rgba(204, 198, 198, 0.97);
+    font-size: 18px;
+    font-family: sans-serif;
+    margin: 40px;
+    text-align: left;
+    border: 1px solid;
+    padding: 40px;
+    background: rgba(87, 19, 137, 0.81);
+
+  }
+
+
+  .forgotpwLink{
+    margin: 40px 0;
+  
+    .lostpw{
+      color: rgba(123, 120, 120, 0.509);
+      font-size: 16px;
+      font-family: sans-serif;
+    }:before{
+      font-size: 18px;
+      content: '\f57a'; /* You should use \ and not /*/
+      font-family: "Font Awesome 5 Free"; /* This is the correct font-family*/
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+      margin-right: 12px;
+    }:hover{
+      color: red;
+    }
+  }
+      .pwNotifyMsg{
+        font-size: 18px;
+        font-family: sans-serif;
+        margin: 0 60px;
+        text-align: left;
+        color: rgba(134, 129, 129, 0.975);
+      }
 }
 
 section#main h1{
@@ -59,7 +102,45 @@ section#main .formContainer{
   margin: 100px 0;
 }
 
-section#main .red-text{font-size: 18px; font-family: sans-serif; }
+section#main .red-text{
+  font-size: 18px; font-family: sans-serif;
+}
+// Frown before the error on forgotpw error message
+.forgotpw:before{
+  content: '\f57a';
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 36px;
+  vertical-align: middle;
+  margin-right: 4px;
+  color: purple;   
+}
+
+// Customer Login Link after password submission request
+section#main{
+  .loginLink{
+    margin: 40px 20px;
+    padding: 10px 0;
+    font-size: 28px;
+    a{
+      color: green;
+      padding: 20px;
+      
+     }:before{
+      content: '\f058'; /* You should use \ and not /*/
+      font-family: "Font Awesome 5 Free"; /* This is the correct font-family*/
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+      margin-right: 6px;
+    }:hover{
+      background-color: blueviolet;
+      color: white;
+    }
+  }
+}
 
 .assetsImages {
   display: flex;
@@ -234,6 +315,7 @@ nav {
       font-size: 26px;
       letter-spacing: 2px;
       color: rgb(162, 158, 158);
+
     }
 
   }
