@@ -26,7 +26,7 @@ Then, just run dev app for localhost enviroment.
 
 `npm run start --dev` for localhost
 
-##Screenshots
+## Screenshots and explanation
 
 ![alt screenshot](screenshots/sc-login.1.png)
 The new Customer login form, username and password fields with a link for `forgot my password`
