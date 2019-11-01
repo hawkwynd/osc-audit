@@ -1,0 +1,32 @@
+<div class="container formContainer">
+  <div class="split">
+    <div class="left">
+      <h2 class="h3 mb-3 font-weight-normal">OC Scan Portal v1.2</h2>
+      <div class="p-wrapper">
+        <p><i class="fas fa-envelope-open"></i> Help for your lost password</p>
+
+        </p>
+      </div>
+    </div>
+    <div class="right">
+      <h2 class="h3 mb-3 font-weight-normal">Forgot Your Password?</h2>
+      <div class="loginMsg">
+        Enter the email address associated with your account, and we'll fire you off an email 
+        with very informative stuff for getting into your account on OC SCAN.
+        </div>
+            
+      {{#if error }}
+              <p class="red-text forgotpw"> {{ error }}</p>        
+      {{/if}}
+     
+      <form class="form-signin" method="post" action="pwsubmit" >
+        <div class="input-field col 26">
+          <label for="email" class="sr-only">email</label>
+          <input type="text" name="email" id="email" class="form-control" placeholder="Email address" >
+        </div>
+
+          <button type="submit" class="btn btn-primary btn-block oc-btn">Login</button>
+        </form>
+    </div>
+  </div>
+</div>
