@@ -103,6 +103,10 @@ app.get('/customer/delete/:id', customerController.deleteDevAuditById);
 app.get('/customer/edit/:id', customerController.RenderEditCustomerById);
 app.post('/customer/edit', customerController.editCustomerById);
 
+// forgot password
+app.get('/customer/forgotpw', customerController.forgotpw); // form
+app.post('/customer/pwsubmit', customerController.pwsubmit); // function 
+
 // Audits routes
 app.get('/audits', auditController.getAudits);
 app.get('/audits/:id', auditController.getAuditById);

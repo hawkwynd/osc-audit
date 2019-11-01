@@ -1,22 +1,31 @@
 # osc-audit by omnicommander
 
-= Install dependencies
+### Install dependencies for oc-audit
+`cd oc-audit/src `
+
 `npm install`
 
-== first time only, install nodemon
+### First time only, install nodemon module
 `npm i nodemon`
--- then run dev app
+
+Then, just run dev app for localhost enviroment.
+
 `npm run dev`
 
-= Run local host webserver
+### Run your application
+
 `cd oc-audit/src`
+
 `npm run dev`
 
-http://localhost:8080 to access front end 
+[http://localhost:8080](http://localhost:8080) to access front end with your browser.
 
-- run auditRunnerservice
+### run auditRunnerservice
+
 `cd auditRunnerService`
-`npm run start --dev`
+
+`npm run start --dev` for localhost
+
 
 
 

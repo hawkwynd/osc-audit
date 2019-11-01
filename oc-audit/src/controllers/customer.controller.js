@@ -146,23 +146,32 @@ module.exports = {
             
             if(customerId) {
                 Customer.getCustomerByCode(customerId, email, (customer) => {
+
                 if(customer){
                     
-                    console.log(`Customer login: ${customer.email} ${customer.name} ${customer.url} `);
+                    console.log(`login: ${customer.email} ${customer.name} ${customer.url} `);
+                    
+                    // load up session info for pages to display shit
 
-                    req.session.visitor = customer._id;
-                    req.session.vName = customer.name;
-                    req.session.vUrl = customer.url;
-                    req.session.vEmail = customer.email;
-                    req.session.vLastOn = customer.updatedAt;
+                    req.session.visitor     = customer._id;
+                    req.session.vName       = customer.name;
+                    req.session.vUrl        = customer.url;
+                    req.session.vEmail      = customer.email;
+                    req.session.vLastOn     = customer.updatedAt;
                    
-                    console.log(`vName: ${req.session.vName}`)
-
                     res.redirect('/audits');
 
                 } else {
-                    req.session.error = "Password or email incorrect.";
+                
+                    // Bad login, return error and stuff
+                    req.session.error = "Please enter a valid email address and password";
                     req.session.visitor = null;
+                
+                    // what is the correct customer password? Redirect to a forgot password handlebar.
+                    Customer.getCustomerCodeByEmail(email, (customer) => {
+                        console.log(`Bad password!\n I got: ${customerId} but it should be: ${customer.code}`);
+                    });
+                    
                     res.redirect('/customer/login');
                 }
                 });
@@ -176,5 +185,61 @@ module.exports = {
         Customer.findByIdAndDelete(id).then(results => {
             res.redirect('/');
         });
+    },
+    forgotpw: (req, res) => {
+
+        const { email } = req.body;
+        req.checkBody('email', 'Email is required').notEmpty();
+        var errors = req.validationErrors();   
+        res.render('forgotpw', {error: req.session.error});
+        req.session.error = null;
+    },
+    pwsubmit: (req, res) => {
+        
+        const{email} = req.body;
+        console.log(`A password submit request was issued for ${email}`);
+
+        try{
+
+            Customer.getCustomerCodeByEmail(email, (customer) => {
+             if(customer){
+                console.log(`Customer Name: ` + customer.name);
+                console.log(`Customer Email: `+ customer.email);
+                console.log(`Customer site url: ` + customer.url);
+                console.log(`${email}'s password is : ${customer.code}`);
+                
+                const html = `
+                <div style="font-size:18px;">
+                <h3 style="text-transform:uppercase; color: #662c90;">${customer.name} Password Request </h3>
+                <p>This email is in response to a request we received for a password for OC SCAN login for ${customer.name}</p>
+                <p>username:  <span style="font-weight:700;">${customer.email}</span></p>
+                <p>Password:  <span style="font-weight:700;">${customer.code}</span></p>
+                <p>Important Tip: Please write your password down and store it in a secure, dry place.</p>
+
+                <div style="margin:40px 0;font-size:22px;">
+                OC-Audit v1.2 by Omnicommander
+                </div>
+                </div>
+                `;
+               
+                // Send the email
+                mailer(email, `OC Scan Password Request for ${customer.name}`, html);
+                res.render('pwsubmit', {email: customer.email} );
+                req.session.error = null;
+
+             }else{
+                
+                // bad email address in customer listing redirect with error
+                req.session.error = `${email} is not a valid email address.`;
+                res.redirect('/customer/forgotpw');
+                req.session.error = null;
+             }
+            });
+        }
+    catch(error){
+        console.error(error);
     }
+
+
+    },
 };

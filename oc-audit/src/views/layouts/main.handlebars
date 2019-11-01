@@ -28,7 +28,8 @@
     </ul>
     <nav>
       <div class="nav-wrapper">
-        <h3><a href="/" class="">OC SCAN</a></h3>
+        <h3><a href="/" class="">OC SCAN</a></h3> 
+         <span class="visitorData"> {{#if vName}} {{vName}} {{/if}} </span>
         <ul class="right ">
           {{#if user}}
             <li><a class="dropdown-trigger display_name" href="#!" data-target="dropdown1">{{user.name}}<i class="material-icons right">arrow_drop_down</i></a></li>
