@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "audit" : "nodemon server2.js"
+    "audit": "nodemon server2.js"
   },
   "config": {
     "dev": "http://localhost:8080",
