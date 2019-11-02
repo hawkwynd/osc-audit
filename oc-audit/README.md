@@ -44,6 +44,7 @@ The system doesn't find an email address in the Customers table, and displays th
 The notification screen, telling the visitor to check thier email for the password.
 
 ![alt screenshot](screenshots/sc-login.6.png)
-The email the visitor recieves for the password 
+The email the visitor recieves for the password.
+
 
 
