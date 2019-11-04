@@ -239,7 +239,11 @@ module.exports = {
     catch(error){
         console.error(error);
     }
-
-
     },
+    logout: (req, res) => {
+        console.log(`logout...`)
+        req.session.visitor = null;
+        req.logout();
+        res.redirect('/customer/login');
+    }
 };

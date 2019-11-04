@@ -96,12 +96,14 @@ app.use(paginate.middleware(10, 20));
 app.get('/', customerController.index);
 app.get('/welcome', customerController.welcome);
 app.get('/customer/login', customerController.renderLogin);
+app.get('/customer/logout', customerController.logout);
 app.get('/newCustomer', customerController.renderCustomerRegister);
 app.post('/register-customer', customerController.registerCustomer);
 app.post('/customer/login', customerController.login);
 app.get('/customer/delete/:id', customerController.deleteDevAuditById);
 app.get('/customer/edit/:id', customerController.RenderEditCustomerById);
 app.post('/customer/edit', customerController.editCustomerById);
+
 
 // forgot password
 app.get('/customer/forgotpw', customerController.forgotpw); // form
