@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0">
     <meta name="description" content="Software to scan OMNICOMMANDER client's live websites(On Squarespace) for changes and notify an ADA Compliance professional. All changes are reported.">
     <link rel="icon" type="image/png" href="/images/star.png" />
-    <title>OC-Audit</title>
+    <title>OC-Audit by Omnicommander</title>
 </head>
 <body>
   <!-- Dropdown Structure -->
@@ -28,14 +28,16 @@
     </ul>
     <nav>
       <div class="nav-wrapper">
-        <h3><a href="/" class="">OC SCAN</a></h3> 
+        <h3><a href="/audits" class="">OC SCAN</a></h3> 
          <span class="visitorData"> {{#if vName}} {{vName}} {{/if}} </span>
         <ul class="right ">
+          
           {{#if user}}
             <li><a class="dropdown-trigger display_name" href="#!" data-target="dropdown1">{{user.name}}<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="/audits">Audits</a></li>
           <li><a href="/reports">Reports</a></li>
           {{/if}}
+
           {{#if visitor}}
             {{#unless ../user}}
               <li><a href="/audits">Audits</a></li>

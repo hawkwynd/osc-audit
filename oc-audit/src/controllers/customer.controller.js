@@ -197,15 +197,15 @@ module.exports = {
     pwsubmit: (req, res) => {
         
         const{email} = req.body;
-        console.log(`A password submit request was issued for ${email}`);
+        // console.log(`A password submit request was issued for ${email}`);
 
         try{
 
             Customer.getCustomerCodeByEmail(email, (customer) => {
              if(customer){
-                console.log(`Customer Name: ` + customer.name);
-                console.log(`Customer Email: `+ customer.email);
-                console.log(`Customer site url: ` + customer.url);
+                // console.log(`Customer Name: ` + customer.name);
+                // console.log(`Customer Email: `+ customer.email);
+                // console.log(`Customer site url: ` + customer.url);
                 console.log(`${email}'s password is : ${customer.code}`);
                 
                 const html = `
