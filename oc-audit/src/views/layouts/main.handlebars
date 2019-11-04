@@ -32,7 +32,7 @@
          
         <ul class="right ">
           
-          {{#if vName}}<li class="visitorData">  {{vName}} <a href="/customer/logout" title="logout" alt="logout"></a>  </li>{{/if}}
+          {{#if vName}}<li class="visitorData">  {{vName}} <a href="/customer/logout" title="logout" alt="logout">Logoff</a>  </li>{{/if}}
 
           {{#if user}}
             <li><a class="dropdown-trigger display_name" href="#!" data-target="dropdown1">{{user.name}}<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -42,12 +42,11 @@
 
           {{#if visitor}}
             {{#unless ../user}}
-              <li><a href="/audits" alt="Audits" title="Audits">Audits</a></li>
-              
+              <li><a href="/audits" alt="Audits" title="Audits">Audits</a></li>       
             {{/unless}}
           {{/if}}
           {{#if user}}
-            <li ><a id="adminLogout" href="/admin/logout" alt="Sign out" title="Sign Out">Sign Out</a></li>
+            <li ><a id="adminLogout" href="/admin/logout" alt="Sign out" title="Sign Out">Logoff</a></li>
           {{else}}
             <li><a href="/admin/login">Admin</a></li>
           {{/if}}

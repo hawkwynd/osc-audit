@@ -316,13 +316,11 @@ nav {
 
       li {
         border: none;
-
       }
 
-      a {
-        font-size: 1.2em;
-      }
-      
+      a {font-size: 1.2em;}
+
+      #adminLogout:hover{ color: rgb(249, 119, 119); }
       #adminLogout:after{
         content: '\f35a'; /* You should use \ and not /*/
         font-family: "Font Awesome 5 Free"; /* This is the correct font-family*/
@@ -334,21 +332,23 @@ nav {
     }
 
     .visitorData{
-      font-family: sans-serif;
-      color: rgb(162, 158, 158);
+      // font-family: sans-serif;
+      // color: rgb(254, 254, 254);
+      //  Logout link
       a {
         display: inline;
-        
-      }:after{
+        color: rgb(244, 244, 171);
+       }:after{ 
         content: '\f35a'; /* You should use \ and not /*/
         font-family: "Font Awesome 5 Free"; /* This is the correct font-family*/
         font-style: normal;
         font-weight: normal;
         text-decoration: inherit;
-        // margin-right: 2px;
+        margin-left: 4px;
+        }:hover{
+        color: rgb(252, 111, 111);
       }
     }
-
   }
 }
 
