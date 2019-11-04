@@ -2,10 +2,12 @@
 
 const Customer = require('mongoose').model('Customer');
 const Audit = require('mongoose').model('Audit');
+const Messages = require('mongoose').model('Messages');
 const axios = require('axios');
 const initialLoad = require('../helpers/initalLoad');
 const parseXml = require('xml2js').parseString;
 const mailer = require('../helpers/mailService');
+const moment = require('moment');
 
 module.exports = {
     index: (req, res) => {
@@ -75,6 +77,10 @@ module.exports = {
                 Customer.updateOne({_id: id}, { $set: {name: name, url: url, email: email} })
                     .then((affected, error , result) => {
                         // console.log(`updateOne complete`);
+
+                        var log = new Messages({action:'admin', userID: email, messageText:'Customer Account edited'});
+                        log.save(function(err) {if(err) console.log(err) });
+
                         if(error) console.log(error);
                         res.redirect('/');
                 });
@@ -148,9 +154,15 @@ module.exports = {
                 Customer.getCustomerByCode(customerId, email, (customer) => {
 
                 if(customer){
-                    
-                    console.log(`login: ${customer.email} ${customer.name} ${customer.url} `);
-                    
+                    let ts = moment().format('YYYY-MM-DD hh:mm:ss');
+                    console.log(`login: ${customer.email} ${ts}` );
+              
+                    var log = new Messages({action:'login', userID: customer.email, messageText:''});
+                    log.save(function(err) {
+                        if(err) console.log(err);
+                    });
+
+
                     // load up session info for pages to display shit
 
                     req.session.visitor     = customer._id;
@@ -203,21 +215,19 @@ module.exports = {
 
             Customer.getCustomerCodeByEmail(email, (customer) => {
              if(customer){
-                // console.log(`Customer Name: ` + customer.name);
-                // console.log(`Customer Email: `+ customer.email);
-                // console.log(`Customer site url: ` + customer.url);
+
                 console.log(`${email}'s password is : ${customer.code}`);
                 
                 const html = `
                 <div style="font-size:18px;">
                 <h3 style="text-transform:uppercase; color: #662c90;">${customer.name} Password Request </h3>
                 <p>This email is in response to a request we received for a password for OC SCAN login for ${customer.name}</p>
-                <p>username:  <span style="font-weight:700;">${customer.email}</span></p>
+                <p>Username:  <span style="font-weight:700;">${customer.email}</span></p>
                 <p>Password:  <span style="font-weight:700;">${customer.code}</span></p>
                 <p>Important Tip: Please write your password down and store it in a secure, dry place.</p>
 
                 <div style="margin:40px 0;font-size:22px;">
-                OC-Audit v1.2 by Omnicommander
+                OC-Audit by Omnicommander
                 </div>
                 </div>
                 `;
@@ -226,6 +236,10 @@ module.exports = {
                 mailer(email, `OC Scan Password Request for ${customer.name}`, html);
                 res.render('pwsubmit', {email: customer.email} );
                 req.session.error = null;
+
+                // Log it
+                var log = new Messages({action:'request', userID: customer.email, messageText:'Password Request'});
+                log.save(function(err) {if(err) console.log(err) });
 
              }else{
                 
@@ -241,8 +255,19 @@ module.exports = {
     }
     },
     logout: (req, res) => {
-        console.log(`logout...`)
-        req.session.visitor = null;
+        let ts = moment().format('YYYY-MM-DD hh:mm:ss');
+        console.log(`logout: ${req.session.vEmail} ${ts}`);
+
+        // Activity logger
+        var log = new Messages({action:'logout', userID: req.session.vEmail, messageText:''});
+        log.save(function(err) {if(err) console.log(err) });
+
+        // Kill Dem ALL
+        req.session.visitor     = null;
+        req.session.vName       = null;
+        req.session.vUrl        = null;
+        req.session.vEmail      = null;
+        req.session.vLastOn     = null;
         req.logout();
         res.redirect('/customer/login');
     }

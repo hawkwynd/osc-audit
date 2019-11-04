@@ -25,6 +25,7 @@ const config = require('./config/index');
 require('./models/customer');
 require('./models/audit');
 require('./models/user');
+require('./models/monitor'); // Activity logger
 
 // import controllers
 const customerController = require('./controllers/customer.controller');
