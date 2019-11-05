@@ -12,7 +12,7 @@
     "axios": "NODE_ENV=local nodemon axios.js",
     "mongoose": "NODE_ENV=local nodemon index2.js",
     "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save",
-    "pa11y" : "NODE_ENV=local nodemon pa11y.js"
+    "pa11y": "NODE_ENV=local nodemon pa11y.js"
   },
   "repository": {
     "type": "git"
