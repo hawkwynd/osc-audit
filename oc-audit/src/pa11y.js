@@ -11,7 +11,7 @@ const options = {
     ]
 }
 
-pa11y( url ).then( ( results ) => {
+pa11y( url, options ).then( ( results ) => {
 
     // Do something with the results
     //  console.log(results);
