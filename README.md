@@ -20,12 +20,6 @@ Then, just run dev app for localhost enviroment.
 
 [http://localhost:8080](http://localhost:8080) to access front end with your browser.
 
-### run auditRunnerservice
-
-`cd auditRunnerService`
-
-`npm run start --dev` for localhost
-
 ## Screenshots and explanation
 
 ![alt screenshot](screenshots/sc-login.1.png)
