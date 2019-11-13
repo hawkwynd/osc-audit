@@ -1,18 +1,21 @@
 (function($){
-  $(function(){
 
+  $(function(){
+    
     // $('.sidenav').sidenav();
     // $('.parallax').parallax();
-    $('.collapsible').collapsible();
-    $('.tabs').tabs();
-     $('.dropdown-trigger').dropdown();
+    /* $('.collapsible').collapsible(); */
+    /* $('.tabs').tabs(); */
+     /* $('.dropdown-trigger').dropdown(); */
     //  Modal
-      $('.modal').modal();
+      /* $('.modal').modal(); */
 
     // DatePicker
-    $('.datepicker').datepicker();
+    /* $('.datepicker').datepicker(); */
 
     // Select
-    $('select').formSelect();
+    /* $('select').formSelect(); */
   }); // end of document ready
+
+
 })(jQuery); // end of jQuery name space
