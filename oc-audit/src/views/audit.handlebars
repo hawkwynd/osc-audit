@@ -1,17 +1,43 @@
 <div class="container">
-    {{#if audit}}
-    {{!-- place main.css afer site.css for cascading/precedence reasons.  --}}
-    <link href="https://{{audit.rootUrl}}/site.css" rel="stylesheet"> 
-    <link href="/css/main.css" type="text/css" rel="stylesheet" media="screen,projection"> 
-    <h2 class="center name">
-      {{audit.cuName}}
-      (<a href="{{audit.url}}" target="_blank"> Go to Site</a> | <a href="/audits/dev/{{audit.id}}">View Code</a>)
-      <a class="waves-effect waves-light modal-trigger" href="#accessibilityModal"><i class="fas fa-universal-access"></i></a>
-    </h2>
-        <!-- Modal Structure -->
-        <div id="accessibilityModal" class="modal bottom-sheet">
-          <div class="modal-content">
-            <h4>Accessibility Portal</h4>
+    {{#if audit}} {{!-- place main.css afer site.css for cascading/precedence reasons. --}}
+    <link href="https://{{audit.rootUrl}}/site.css" rel="stylesheet">
+    <link href="/css/main.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <script src = "https://{{audit.rootUrl}}/universal/scripts-compressed/common-5b9064720d30e2887990e-min.en-US.js"></script>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2 class="center name">{{audit.cuName}}</h2>
+            <p>Audit Date: {{{audit.compareDate}}}</p>
+            <br />
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                    <a href="{{audit.url}}" target="_blank" class="btn oc-btn"> Go to Site</a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                    <a href="/audits/dev/{{audit.id}}" class="btn oc-btn">View Code</a>
+                </div>
+            </div>
+
+            <!--<a class="waves-effect waves-light modal-trigger" href="#accessibilityModal"><i class="fas fa-universal-access"></i></a>-->
+        </div>
+    </div>
+
+    <!--
+
+    <button type="button" class="btn " data-toggle="modal" data-target="#exampleModal">
+      Launch demo modal
+    </button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           <h4>Accessibility Portal</h4>
             <form method="post" action="/audits/edit" >
               <div class="container">
                 <div class="form-group">
@@ -35,24 +61,34 @@
                 </div>
             </form>
           </div>
+
         </div>
-    <br>
-    <div class="row">
-    <div class="col s12" style="flex:1; flex-basis:initial;">
-      <ul id="tab-nav" class="tabs">
-        <li class="tab col s4"><a class="active" href="#diff">Change Highlight</a></li>
-        <li class="tab col s4"><a href="#old">Preview Version</a></li>
-        <li class="tab col s4 "><a href="#new">New Version</a></li>
-      </ul>
-    </div>
-    <div id="diff" class="tab_content col s12">
-        <center>
-            {{{audit.diffData}}}
-        </center>
-    </div>
-    <div id="old" class="tab_content col s12">
-        <center>
-            <h2> Images</h2>
+      </div>
+    </div> 
+    -->
+
+    <div class="row d-flex justify-content-center flex-column">
+
+        <ul class="nav nav-tabs " id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#diff" id="diffTab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Change Highlight</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#old" id="prevTab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Previous Version</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#new" id="newTab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">New Version</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="differenceTabContent">
+            <div id="diff" class="tab-pane fade show active" role="tabpanel" aria-labelledby="diffTab">
+              {{{audit.diffData}}}
+
+
+            </div>
+            <div id="old" class="tab-pane fade" role="tabpanel" aria-labelledby="prevTab">
+                <h2> Images</h2>
             <div class="assetsImages">
               {{# each audit.oldAssets }}
                 {{#if this}}
@@ -61,11 +97,10 @@
                 {{/each}}
             </div>
             {{{audit.oldData}}}
-        </center>
-    </div>
-    <div id="new" class="tab_content col s12">
-        <center>
-            <h2> Images</h2>
+
+            </div>
+            <div id="new" class="tab-pane fade" role="tabpanel" aria-labelledby="newTab">
+                <h2> Images</h2>
             <div class="assetsImages">
               {{# each audit.newAssets }}
                 {{#if this}}
@@ -74,9 +109,10 @@
                 {{/each}}
             </div>
             {{{audit.newData}}}
-        </center>
+              
+            </div>
+        </div>
     </div>
-  </div>
     {{/if}}
 
 </div>

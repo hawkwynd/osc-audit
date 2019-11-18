@@ -1,10 +1,54 @@
+
+<div class="card">
+    <div class="card-header">
+        <h1>OMNISCAN ADMIN</h1>
+    </div>
+
+    <div class="card-body">
+        <h2 class="card-title">Admin registration</h2>     
+        {{# if errors }}
+          {{# each errors }}
+              <p class=" red-text">{{ this.msg }}</p>        
+          {{/each}}
+        {{/if}}
+        <form class="form-signin" method="post" action="register" >
+
+            <div class="form-group">
+                <label for="email" class="sr-only">Name</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Name"  autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="customerId" class="sr-only">Email</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="customerId" class="sr-only">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" >
+            </div>
+            <div class="form-group">
+                <label for="customerId" class="sr-only">Confirm Password</label>
+                <input type="password" name="password-confirm" id="password-confirm" class="form-control" placeholder="Password Confirm" >
+            </div>
+            <button type="submit" class="btn oc-btn">Login</button>
+        </form>
+
+      
+
+    </div>
+    <div class="card-footer">
+      <div class="align-self-center">
+          <p><i class="fas fa-search-plus"></i> Monitor Website changes</p>
+          <p><i class="fas fa-envelope"></i> Notifications instantly</p>
+          <p><i class="fas fa-history"></i> Access to change history</p>
+      </div>
+  </div>
+</div>
+
+<!--
 <div class="container formContainer">
-    <h1 class="h3 mb-3 font-weight-normal">Admin registration</h1>
-    {{# if errors }}
-        {{# each errors }}
-            <p class=" red-text">{{ this.msg }}</p>        
-        {{/each}}
-    {{/if}}
+    <h1 class="h3 mb-3 font-weight-normal"></h1>
+
   <form class="form-signin" method="post" action="register" >
       <div class="input-field col s6">
         <label for="name" class="sr-only">Name</label>
@@ -28,4 +72,4 @@
       <button type="submit" class="btn btn-primary btn-block oc-btn">Register</button>
       <a href="/" alt="go back " class="btn btn-primary oc-btn back">Back</a>      
     </form>
-</div>
+</div>-->

@@ -1,9 +1,32 @@
-<div class="cover">
-        {{!-- Needed for styling code compare --}}
+<div class="container">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
 <link href="/css/diff2html.css" rel="stylesheet">
-<h2 class="center name">{{audit.cuName}}(<a href="{{audit.url}}" target="_blank"> Go to Site</a> | <a href="/audits/{{audit.id}}">Visual change</a>)</h2>
-{{#if code}}
-        <div id="code">{{{code}}}</div>
-{{/if}}
+
+
+<div class="jumbotron jumbotron-fluid">
+        <div class="container">
+                <h2 class="center name">{{audit.cuName}}</h2>
+                <p>Audit Date: {{{audit.compareDate}}}</p>
+                <br />
+                <div class="row d-flex justify-content-center">
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                        <a href="{{audit.url}}" target="_blank" class="btn oc-btn"> Go to Site</a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                        <a href="/audits/dev/{{audit.id}}" class="btn oc-btn">View Code</a>
+                </div>
+                </div>
+
+                <!--<a class="waves-effect waves-light modal-trigger" href="#accessibilityModal"><i class="fas fa-universal-access"></i></a>-->
+        </div>
+</div>
+
+<div class="cover">
+        {{!-- Needed for styling code compare --}}
+        {{#if code}}
+
+                <div id="code">{{{code}}}</div>
+               
+        {{/if}}
+</div>
 </div>

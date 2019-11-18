@@ -3,12 +3,13 @@
 <!-- CSS  -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <!-- Compiled and minified Styledsheet -->
-<link href="/css/main.css" type="text/css" rel="stylesheet" media="screen,projection" >
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Compiled and minified Styledsheet -->
+<link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+<link href="/css/main.css" type="text/css" rel="stylesheet" media="screen,projection">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src = "/js/bootstrap.min.js"></script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0">
@@ -16,58 +17,65 @@
     <link rel="icon" type="image/png" href="/images/star.png" />
     <title>OC-Audit by Omnicommander</title>
 </head>
+
 <body>
-  <!-- Dropdown Structure -->
-    <ul id="dropdown1" class="dropdown-content lastLogin">
-      
-      <li class="divider"></li>
-      <li>
-        <h6 class="center">last Login:</h6>
-        <a href="#!" class="disabled ">{{user.login_date}}</a>
-      </li>
-    </ul>
-    <nav>
-      <div class="nav-wrapper">
-        <h3><a href="/audits" class="">OC SCAN</a></h3> 
-         
-        <ul class="right ">
-          
-          {{#if vName}}<li class="visitorData">  {{vName}} <a href="/customer/logout" title="logout" alt="logout">Logoff</a>  </li>{{/if}}
+    <!-- Dropdown Structure -->
 
-          {{#if user}}
-            <li><a class="dropdown-trigger display_name" href="#!" data-target="dropdown1">{{user.name}}<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a href="/audits" alt="Audits" title="Audits">Audits</a></li>
-          <li><a href="/reports" alt="report" title="Reports">Reports</a></li>
-          {{/if}}
-
-          {{#if visitor}}
-            {{#unless ../user}}
-              <li><a href="/audits" alt="Audits" title="Audits">Audits</a></li>       
-            {{/unless}}
-          {{/if}}
-          {{#if user}}
-            <li ><a id="adminLogout" href="/admin/logout" alt="Sign out" title="Sign Out">Logoff</a></li>
-          {{else}}
-            <li><a href="/admin/login">Admin</a></li>
-          {{/if}}
-        </ul>
-      </div>
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">OMNI SCAN</a>
         
-  <section id="main">
-    {{{body}}}
-  </section>
-  {{> footer}}
-    {{#if user}}
-         <a href="/newCustomer" class="add-float"><i class="material-icons">add</i></a>
-    {{/if}}
+        <div class="collapse" id="navbarSupportedContent"></div>
+        <ul class="navbar-nav">
+            {{#if user}}
+            <li class="nav-item"><a class="nav-link" href="/audits">Audits</a></li>
+            <li class="nav-item"><a class="nav-link" href="/reports">Reports</a></li>
+            {{/if}} {{#if visitor}} {{#unless ../user}}
+            <li class="nav-item"><a class="nav-link" href="/audits">Audits</a></li>
+            {{/unless}} {{/if}} {{#if user}}
+            <li class="nav-item"><a class="nav-link" href="/admin/logout">Sign Out</a></li>
+
+            {{else}}
+            <li class="nav-item"><a class="nav-link" href="/admin/login">Admin</a></li>
+            {{/if}}
+        </ul>
+        </div>
+
+    </nav>
+    <nav class="navbar justify-content-end ">
+      <span class="visitorData"> {{#if vName}} {{vName}} {{/if}} </span>
+        <div class="userInfoRight d-flex ">
+          {{#if user}}
+            
+         
+            <div class="justify-content-end">
+              
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{user.name}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <h6 class="center">Last Login:</h6>
+                    <a href="#!" class="disabled ">{{user.login_date}}</a>
+                </div>
+            </div>
+
+          {{/if}}
+            
+        </div>
+    </nav>
+    
+    <section id="main">
+   
+        {{{body}}}
+      
+    </section>
+    {{> footer}} {{#if user}}
+    <a href="/newCustomer" class="add-float"><i class="material-icons">add</i></a> {{/if}}
 
 </body>
 
-  <!--  Scripts-->
+<!--  Scripts-->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="/js/init.js"></script>
-  <script src="/js/main.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/main.js"></script>
 
 </html>

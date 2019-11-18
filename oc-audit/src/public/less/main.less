@@ -15,9 +15,15 @@
 //*********************************************************
 // General styles
 // *********************************************************
-h1, h2, h3 {
-  color: var(--purp);
-  font-family: "Lato";
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+body, h1, h2, h3, p,a {
+  color: var(--purp) !important;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -26,8 +32,8 @@ h3 {
 }
 
 body {
-  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('/images/bg.jpg');
-  font-family: "Lato";
+  //background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('/images/bg.jpg');
+  font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }
 
@@ -52,10 +58,11 @@ section#main {
   justify-content: start;
   width: 100%;
   min-height: calc(~"100vh - 164px"); //page size minus sum of nav and footer height
+  height:100vh;
   padding: 0 2em;
   padding-bottom: 50px;
   text-align: center;
-
+  padding-top:10vh;
   .loginMsg{
     color: rgba(204, 198, 198, 0.97);
     font-size: 18px;
@@ -79,7 +86,7 @@ section#main {
 
 
   .forgotpwLink{
-    margin: 40px 0;
+    margin: 10px 0;
   
     .lostpw{
       color: rgba(123, 120, 120, 0.509);
@@ -87,8 +94,8 @@ section#main {
       font-family: sans-serif;
     }:before{
       font-size: 18px;
-      content: '\f57a'; /* You should use \ and not /*/
-      font-family: "Font Awesome 5 Free"; /* This is the correct font-family*/
+      /*content: '\f57a';  You should use \ and not /*/
+      /*font-family: "Font Awesome 5 Free";  This is the correct font-family*/
       font-style: normal;
       font-weight: normal;
       text-decoration: inherit;
@@ -248,7 +255,7 @@ section#main{
 }
 
 footer.page-footer {
-  background-color: var(--purp);
+  //background-color: var(--purp);
 }
 
 
@@ -284,7 +291,7 @@ div#code {
 // *********************************************************
 
 nav {
-  background-color: var(--purp);
+  
   height: auto !important;
   padding: 1em;
 
@@ -301,6 +308,7 @@ nav {
   }
 
   .nav-wrapper {
+    
     display: flex;
     justify-content: space-between;
     ul {
@@ -401,12 +409,18 @@ nav {
 
 .oc-btn {
   background-color: var(--purp);
-  color: #FFF;
-  min-width: 150px;
-
+  border:1px solid #fff;
+  color: #FFF !important;
+  width:100%;
+  margin-bottom:10px;
+  -webkit-transition: all .3s; /* Safari prior 6.1 */
+  transition: all .3s;
   &:hover {
     background-color: #FFF;
-    color: var(--purp);
+    border:1px solid var(--purp);
+    color: var(--purp) !important;
+    -webkit-transition: all .3s; /* Safari prior 6.1 */
+    transition: all .3s;
   }
 }
 
@@ -418,7 +432,10 @@ div.cover {
 .dropdown-content {
   top: 100% !important;
 }
-
+.dropdown-menu
+{
+  left: auto !important;
+}
 .query-form {
   max-width: 500px;
   margin: 0 auto;
@@ -494,7 +511,7 @@ div.cover {
 //*********************************************************
 // Table Styles
 // *********************************************************
-table {
+/* table {
     margin: 60px 0 0 0;
     font-size: calc(~"0.6em + 0.5vw");
     border-collapse: collapse;
@@ -540,7 +557,7 @@ td:first-child {
 tr {
     border-bottom: 1px solid var(--purp);
 }
-/* end table*/ 
+/* end table*/  
 
 //*********************************************************
 // HTML  DIFF STyle 
@@ -567,11 +584,7 @@ del {
 
 
 /* Card */
-.card {
-  padding: 1em;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+
 
 /* Form */
 form {
@@ -589,8 +602,7 @@ form {
 }
 
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
-  text-align: center;
-  width: 80%;
+
 }
 
 input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
