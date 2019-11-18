@@ -1,31 +1,36 @@
-<div class="container formContainer">
-    <div class="card ">
-        <div class="card-header bg-primary">
-            <h1 class="h3 mb-3 font-weight-normal">Register a new Customer</h1>
-        </div>
-        <div class="card-body">
-            {{# if errors }}
-                {{# each errors }}
-                    <p class="red-text">{{ this.msg }}</p>
-                    
-                {{/each}}
-            {{/if}}
-            <form method="post" action="/register-customer" >
-                <div class="form-group">
-                    <label for="name">Credit Union Name</label>
-                    <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Enter CU name" >
-                </div>
-                <div class="form-group">
-                    <label for="email">Contact Email</label>
-                    <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="ie: contact@example.com" >
-                </div>
-                <div class="form-group">
-                    <label for="url">Credit Union Url</label>
-                    <input type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp" placeholder="ie: www.example.com" >
-                </div>
-                <button type="submit" class="btn btn-primary oc-btn">Submit</button>
-                <a href="/" alt="go back " class="btn btn-primary oc-btn back">Back</a>
-            </form>
-        </div>
+
+<div class="card" style="width:40vw;">
+    <div class="card-body">
+        <h2 class="card-title">Register a new Customer</h2> 
+       {{# if errors }}
+            {{# each errors }}
+                <p class="red-text">{{ this.msg }}</p>
+                
+            {{/each}}
+        {{/if}}
+        <form method="post" action="/register-customer" >
+
+            <div class="form-group">
+               
+                <label for="name">Credit Union Name</label>
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Enter CU name" >
+            </div>
+
+            <div class="form-group">
+               <label for="email">Contact Email</label>
+                <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="ie: contact@example.com, contact2@example.com" >
+            </div>
+             <div class="form-group">
+               <label for="url">Credit Union Url</label>
+                <input type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp" placeholder="ie: www.example.com" >
+            </div>
+            <button type="submit" class="btn oc-btn">Submit</button><br />
+            <a href="/" alt="go back " class="btn oc-btn back">Back</a>
+        </form>
+
+      
     </div>
+    <div class="card-footer">
+     
+  </div>
 </div>

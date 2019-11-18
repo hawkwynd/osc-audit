@@ -1,32 +1,36 @@
-<div class="container formContainer">
-  <div class="split">
-    <div class="left">
-      <h2 class="h3 mb-3 font-weight-normal">OC Scan Portal v1.2</h2>
-      <div class="p-wrapper">
-        <p><i class="fas fa-envelope-open"></i> Help for your lost password</p>
 
-        </p>
-      </div>
+<div class="card">
+    <div class="card-header">
+        <h1>OMNISCAN</h1>
     </div>
-    <div class="right">
-      <h2 class="h3 mb-3 font-weight-normal">Forgot Your Password?</h2>
-      <div class="loginMsg">
-        Enter the email address associated with your account, and we'll fire you off an email 
-        with very informative stuff for getting into your account on OC SCAN.
+
+    <div class="card-body">
+        <h2 class="card-title">Forgot Your Password?</h2> 
+         <div class="">
+        Enter the email address associated with your account, <br />and we'll fire you off an email 
+        with very informative <br />stuff for getting into your account on OC SCAN.
         </div>
-            
-      {{#if error }}
+        {{#if error }}
               <p class="red-text forgotpw"> {{ error }}</p>        
-      {{/if}}
-     
-      <form class="form-signin" method="post" action="pwsubmit" >
-        <div class="input-field col 26">
-          <label for="email" class="sr-only">email</label>
-          <input type="text" name="email" id="email" class="form-control" placeholder="Email address" >
-        </div>
+        {{/if}}
+        <form class="form-signin" method="post" action="pwsubmit" >
 
-          <button type="submit" class="btn btn-primary btn-block oc-btn">Login</button>
+            <div class="form-group">
+                <label for="email" class="sr-only">email</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email address" >
+            </div>
+
+           
+            <button type="submit" class="btn oc-btn">Submit</button>
         </form>
+
+      
     </div>
+     <div class="card-footer">
+      <div class="">
+          <p><a href =  "/"><i class="fas fa-arrow-left"></i> Back</a></p>
+         
+      </div>
   </div>
 </div>
+

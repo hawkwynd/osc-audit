@@ -1810,7 +1810,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  for (var i = 0; i < changes.length; i++) {
 	    var change = changes[i];
 	    if (change.added) {
-	      ret.push('<ins>');
+	     ret.push('<ins>');
 	    } else if (change.removed) {
 	      ret.push('<del>');
 	    }
@@ -1818,7 +1818,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ret.push(escapeHTML(change.value));
 
 	    if (change.added) {
-	      ret.push('</ins>');
+	     ret.push('</ins>'); 
 	    } else if (change.removed) {
 	      ret.push('</del>');
 	    }

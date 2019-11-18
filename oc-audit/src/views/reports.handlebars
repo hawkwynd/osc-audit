@@ -1,49 +1,49 @@
 <div class="container">
-    <h3>Select A Credit Union and a date</h3>
+    <h2>Select A Credit Union and a date</h2>
+
     <form method="get" action="/report" class="query-form" style="display: block;">
-    <div class="input-field col s12">
-            <select name="cu" required>
+        <div class="form-group">
+            <select name="cu" required class="form-control">
                 <option value="" selected>Select Customer</option>
                 {{# each cuList }}
-                    <option value="{{this._id}}">{{this.name}}</option>
+                <option value="{{this._id}}">{{this.name}}</option>
                 {{/each}}
             </select>
         </div>
-        <div class="input-field col s12">
-            <input type="date" name="date" placeholder="Select a date" required>
+        <div class="form-group">
+            <input type="date" name="date" class="form-control" placeholder="Select a date" required>
         </div>
-        <div class="input-field col s12">
+        <div class="form-group">
             <button type="submit" class="btn oc-btn">Submit</button>
         </div>
     </form>
-        <table class="striped" id="report">
-        <thead>
-            <tr >
-                <td colspan="4">
-                        <h2 class="white-text">
-                        {{cuName}}({{date}})
-                        <a class="printReport white-text"><i class="fas fa-print"></i></a>
-                        </h2>
-                </td>
-            </tr>
-            <tr class="bg-primary text-white">
-                <td>Url</td>
-                <td>Change date</td>
-                <td>is Compliant</td>
-                <td>Comment</td>
-            </tr>
-        </thead>
-        <tbody>
-        {{# each reports }}
-            <tr>
-                <td>{{{relativeUrl this.url}}}</td>
-                <td>{{this.compareDate}}</td>
-                <td>{{#if this.isCompliant}} YES {{else}} NO {{/if}} </td>
-                <td>{{this.comment}}</td>
-            </tr>
-        {{/each}}
-        </tbody>
+    <div class="tableContainer">
+        <h2 class="white-text">
+            {{cuName}}({{date}})
+            <a class="printReport white-text"><i class="fas fa-print"></i></a>
+        </h2>
+        <table class="table table-striped table-hover table-sm">
+            <thead>
+
+                <tr class="">
+                    <th scope="col">Url</th>
+                    <th scope="col">Change date</th>
+                    <th scope="col">is Compliant</th>
+                    <th scope="col">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{# each reports }}
+                <tr>
+                    <td>{{{relativeUrl this.url}}}</td>
+                    <td>{{this.compareDate}}</td>
+                    <td>{{#if this.isCompliant}} YES {{else}} NO {{/if}} </td>
+                    <td>{{this.comment}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
+    </div>
 </div>
 
 <script src="/js/jspdf.min.js"></script>
